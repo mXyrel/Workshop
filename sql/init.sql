@@ -5,8 +5,11 @@
 -- SETUP ORDER:
 --   1. psql -U postgres -c "CREATE DATABASE workshop_db;"
 --   2. psql -U postgres -d workshop_db -f sql/init.sql
---   3. mvn compile exec:java -Dexec.mainClass="com.workshop.bbs.util.SetupUsers"
---   4. mvn javafx:run
+--   3. mvn javafx:run
+--
+-- Default users are now seeded in this script, so the SetupUsers step is optional.
+-- If you want to recreate or add users later from PowerShell, use:
+--   mvn --% -Dexec.mainClass=com.workshop.bbs.util.SetupUsers compile exec:java
 -- ==========================================================
 
 DROP TABLE IF EXISTS borrow_records CASCADE;
@@ -23,6 +26,12 @@ CREATE TABLE users (
     role          VARCHAR(20)  NOT NULL DEFAULT 'librarian',
     created_at    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ── Default users ───────────────────────────────────────────
+INSERT INTO users (username, password_hash, full_name, role) VALUES
+    ('admin',   '$2a$12$FCTh90FpZa0CBzoozOn8IebLfniTbP/wfOkW1lhHwRgzQYpMsL2K.', 'Administrator', 'admin'),
+    ('libuser', '$2a$12$/Z05CsQ9LDw7uOZXF/oll.K4XNo/L1GcdIZiTZXKfx9LXgpxOMx4S', 'Maria Santos', 'librarian'),
+    ('malinay', '$2a$12$gT87.AuxPeDyFVhE1yiuZOSny4pMg5NlmMk6.t8/01YIuJ1hnZLhm', 'Might Malinay', 'admin');
 
 -- ── Students ─────────────────────────────────────────────
 CREATE TABLE students (
@@ -113,6 +122,10 @@ SELECT 'students' AS tbl, COUNT(*) AS rows FROM students
 UNION ALL SELECT 'books',          COUNT(*) FROM books
 UNION ALL SELECT 'borrow_records', COUNT(*) FROM borrow_records;
 
--- NOTE: Users are NOT seeded here.
--- Run: mvn compile exec:java -Dexec.mainClass="com.workshop.bbs.util.SetupUsers"
--- to create users with proper BCrypt-hashed passwords.
+-- NOTE: Default users are now seeded in this script.
+-- Default accounts:
+--   admin   / admin123
+--   libuser / lib123
+--   malinay / admin123
+-- You can still run SetupUsers if you want to recreate or add users separately:
+--   mvn --% -Dexec.mainClass=com.workshop.bbs.util.SetupUsers compile exec:java

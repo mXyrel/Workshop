@@ -42,8 +42,8 @@ A simple desktop application for managing library book borrowing transactions. B
 ## 1 — Clone the project
 
 ```bash
-git clone https://github.com/yourname/book-borrowing-system.git
-cd book-borrowing-system
+git clone https://github.com/mXyrel/Workshop.git
+cd Workshop
 ```
 
 ---
@@ -74,7 +74,19 @@ psql -U postgres -c "CREATE DATABASE workshop_db;"
 psql -U postgres -d workshop_db -f sql/init.sql
 ```
 
-This creates four tables (`users`, `students`, `books`, `borrow_records`) and populates them with sample data.
+This creates four tables (`users`, `students`, `books`, `borrow_records`) and populates them with sample data, including the default user accounts.
+
+If you need to recreate or add users later from Java, use PowerShell-safe syntax:
+
+```bash
+mvn --% -Dexec.mainClass=com.workshop.bbs.util.SetupUsers exec:java
+```
+
+If you are not in PowerShell, the same command also works without `--%`:
+
+```bash
+mvn -Dexec.mainClass=com.workshop.bbs.util.SetupUsers exec:java
+```
 
 ---
 
@@ -138,17 +150,6 @@ book-borrowing-system/
         └── Styles.java
 ```
 
----
-
-## Screenshots
-
-> _Add screenshots here after running the app._
-
-| Screen | Description |
-|--------|-------------|
-| `screenshots/login.png`   | Login screen with DB status indicator |
-| `screenshots/dashboard.png` | Dashboard with stat cards and book table |
-| `screenshots/records.png`   | Borrow records with status filters |
 
 ---
 

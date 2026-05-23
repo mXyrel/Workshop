@@ -1,19 +1,25 @@
 package com.workshop.bbs.controller;
 
+import java.util.Optional;
+
 import com.workshop.bbs.dao.UserDAO;
 import com.workshop.bbs.model.User;
 import com.workshop.bbs.util.DatabaseConnection;
 import com.workshop.bbs.util.Session;
 import com.workshop.bbs.view.SceneManager;
 import com.workshop.bbs.view.Styles;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-
-import java.util.Optional;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * LOGIN SCREEN
@@ -117,7 +123,7 @@ public class LoginController {
         );
 
         // ── Footer ───────────────────────────────────────────────────
-        Label footer = new Label("Polytechnic University of the Philippines  ·  Workshop Project 2024");
+        Label footer = new Label("Polytechnic University of the Philippines  ·  Workshop Project 2026");
         footer.setStyle(Styles.LABEL_MUTED);
         footer.setPadding(new Insets(16, 0, 0, 0));
 
