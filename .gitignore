@@ -1,0 +1,22 @@
+# Secrets — NEVER commit real credentials
+.env
+
+# Maven build output
+target/
+*.class
+*.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/settings.json
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
